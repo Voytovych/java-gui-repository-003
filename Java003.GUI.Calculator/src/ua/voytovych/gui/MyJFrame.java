@@ -32,6 +32,6 @@ public class MyJFrame extends JFrame {
 		super.setLocationRelativeTo(null);
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		super.setLayout(layout);
-		super.setIconImage(new ImageIcon("icon.png").getImage());
+		super.setIconImage(icon);
 	}
 }
