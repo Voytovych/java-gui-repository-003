@@ -1,9 +1,12 @@
 package ua.voytovych.gui;
 
+import com.jtattoo.plaf.aero.AeroLookAndFeel;
+import com.jtattoo.plaf.hifi.HiFiLookAndFeel;
 import com.jtattoo.plaf.smart.SmartLookAndFeel;
 
 import ua.voytovych.listeners.CalcButtonActionListener;
 import ua.voytovych.listeners.CalcTextFieldFocusListener;
+import ua.voytovych.listeners.ChangeSkinActionListener;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,6 +24,8 @@ public class TestGUI {
 	private MyJButton btnSubtract;
 	private MyJButton btnDivide;
 	private MyJButton btnMultiply;
+	private MyJButton btnDefaultSkin;
+	private MyJButton btnChangeSkin;
 
 	private JLabel labelNumber1;
 	private JLabel labelNumber2;
@@ -38,7 +43,7 @@ public class TestGUI {
 
 	public static void main(String[] args) {
 		try {
-			UIManager.setLookAndFeel(new SmartLookAndFeel());
+			UIManager.setLookAndFeel(new AeroLookAndFeel());
 		} catch (UnsupportedLookAndFeelException ex) {
 			Logger.getLogger(TestGUI.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -78,6 +83,9 @@ public class TestGUI {
 		btnSubtract = new MyJButton("Subtraction");
 		btnDivide = new MyJButton("Division");
 		btnMultiply = new MyJButton("Multiplication");
+		btnChangeSkin = new MyJButton("Change scin");
+		btnChangeSkin = new MyJButton("Scin-1");
+		btnDefaultSkin = new MyJButton("Scin-2");
 
 		addButtonListeners();
 	}
@@ -107,6 +115,8 @@ public class TestGUI {
 
 		panel3.add(labelResult);
 		panel3.add(jtxtResult);
+		panel3.add(btnChangeSkin);
+		panel3.add(btnDefaultSkin);
 
 	}
 
@@ -119,6 +129,8 @@ public class TestGUI {
 		frame.getContentPane().add(panel1, BorderLayout.NORTH);
 		frame.getContentPane().add(panel2, BorderLayout.CENTER);
 		frame.getContentPane().add(panel3, BorderLayout.SOUTH);
+
+		addChangeSkinListeners();
 
 		frame.setVisible(true);
 
@@ -136,6 +148,11 @@ public class TestGUI {
 	private void addTextFieldListeners() {
 		jtxtNumber1.addFocusListener(new CalcTextFieldFocusListener(jtxtNumber1));
 		jtxtNumber2.addFocusListener(new CalcTextFieldFocusListener(jtxtNumber2));
+	}
+
+	private void addChangeSkinListeners() {
+		btnChangeSkin.addActionListener(new ChangeSkinActionListener(frame, new HiFiLookAndFeel()));
+		btnDefaultSkin.addActionListener(new ChangeSkinActionListener(frame, new AeroLookAndFeel()));
 	}
 
 }
